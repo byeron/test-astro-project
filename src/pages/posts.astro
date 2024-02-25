@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const allPosts = await Astro.glob("../pages/posts/*.md");
+const pageTitle = "Posts";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <main>
+    <section class="pageList">
+      <ul>
+        {
+          allPosts.map((post) => (
+            <li class="pageListItem">
+              <a href={post.url}>
+                <article class="postItem">
+                  <h2 class="postTitle">{post.frontmatter.title}</h2>
+                  <p class="postSummary">summary</p>
+                  <div class="postFooter">
+                    <span>day</span>
+                  </div>
+                </article>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </main>
+</BaseLayout>
